@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function LeftNavbar() {
 
+  
   return (
     <>
     <div className="fixed top-14 left-0 flex flex-col text-left bg-gray-950 w-1/6 z-50">
