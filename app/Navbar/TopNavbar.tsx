@@ -13,21 +13,12 @@ import Zoom from "@mui/material/Zoom";
 
 
 
-    export function TopNavbar({setSearchedContent}) {
-    const [searchQuery, setSearchQuery] = useState("");
+    export function TopNavbar({setSearchedContent, handleSearch}) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const handleTyping = (event) => {
-        setSearchQuery(event.target.value); // 🔥 Update searchQuery
+        setSearchedContent(event.target.value);
     };
-    
-    const handleSearch = () => {
-        if (searchQuery.trim() !== "") {
-            console.log(searchQuery)
-          setSearchedContent(searchQuery); // ✅ Update global search state
-        }
-    };
-    
     
 
     return (
@@ -40,8 +31,7 @@ import Zoom from "@mui/material/Zoom";
         <h1 className="text-white ml-2 font-bold cursor-grab">Entertainment</h1>
         </div>
             <div className="relative flex items-center">
-                <input  placeholder="Search" className="h-10 w-96 bg-transparent text-white border-1 rounded-l-full border-gray-500 text-left py-1 pl-4" onChange={handleTyping} // ✅ Updates state correctly
-              value={searchQuery}/>
+                <input  placeholder="Search" className="h-10 w-96 bg-transparent text-white border-1 rounded-l-full border-gray-500 text-left py-1 pl-4" onChange={handleTyping}/>
                 <FontAwesomeIcon icon={faMagnifyingGlass} onClick={handleSearch} className="text-gray-500 text-xl bg-gray-800 px-5 py-2.5 rounded-r-full cursor-grab"/>
                 <FontAwesomeIcon icon={faMicrophone} className="text-gray-500 text-md bg-gray-800 px-4 py-3 rounded-full cursor-grab ml-3 hover:not-indeterminate:bg-gray-900"/>
             </div>
@@ -49,8 +39,8 @@ import Zoom from "@mui/material/Zoom";
                 <FontAwesomeIcon icon={faUser} className="text-white w-10 h-12 text-2xl cursor-grab"/>
             {/* </Tooltip> */}
         </div>
-        <ContentNavbar/>
-        {isExpanded ? <LeftNavbar /> : <ShortLeftNavbar />}
+        <ContentNavbar setSearchedContent={setSearchedContent} handleSearch={handleSearch}/>
+        {isExpanded ? <LeftNavbar/> : <ShortLeftNavbar/>}
         </div>
         </>
     );

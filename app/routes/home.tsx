@@ -14,14 +14,36 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const [searchedContent, setSearchedContent] = useState("songs");
+  const [searchedContent, setSearchedContent] = useState();
+  const [videos, setVideos] = useState([]); // Video state
 
+const fetchVideos = async () => {
+const apiKey = 'AIzaSyCiGHln8V8uuyGx8MWqNl0DfynX6p7VNy4'; // ⚠️ API key .env me safe rakho
+const maxResults = 10;
+const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchedContent}&maxResults=${maxResults}&key=${apiKey}`;
+// const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchedContent}&maxResults=${maxResults}&key=${apiKey}&videoDuration=short&type=video&q=%23shorts`;
+
+
+try {
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log("API Response:", data);
+  setVideos(data.items || []); // Ensure videos is always an array
+} catch (error) {
+  console.error("Error fetching data:", error);
+}
+};
+  const handleSearch = () => {
+    console.log(searchedContent);
+    fetchVideos();
+};
+  
   return(
     <div className="bg-gray-950">
 
-    <TopNavbar setSearchedContent={setSearchedContent} />
+    <TopNavbar setSearchedContent={setSearchedContent} handleSearch={handleSearch}/>
     <Welcome />
-    <Card searchedContent={searchedContent} />
+    <Card videos={videos}/>
     </div>
     );
 }
