@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
-export function ContentNavbar({ setSearchedContent, handleSearch }) {
+export function ContentNavbar({ setSearchedContent, handleSearch, isExpanded }) {
     const navbarRef = useRef(null);
 
     const scrollLeft = () => {
@@ -30,7 +30,7 @@ export function ContentNavbar({ setSearchedContent, handleSearch }) {
     ];
 
     return (
-        <div className="flex items-center ml-24 mr-10 my-5 relative">
+        <div className={`${isExpanded === false ? 'ml-24' : 'ml-60'} flex items-center mr-10 my-5 relative`}>
             <button onClick={scrollLeft} className="absolute left-0 z-10 bg-gray-800 py-2 px-4 rounded-full text-white shadow-lg cursor-pointer">
                 <FontAwesomeIcon icon={faChevronLeft} />
             </button>
@@ -52,7 +52,7 @@ export function ContentNavbar({ setSearchedContent, handleSearch }) {
                 ))}
             </div>
 
-            <button onClick={scrollRight} className="cursor-pointer absolute right-0 z-10 bg-gray-800 py-2 px-4 rounded-full text-white shadow-lg">
+            <button onClick={scrollRight} className="cursor-pointer absolute right-0 z-10 hover:bg-gray-800 py-2 px-4 rounded-full text-white shadow-lg">
                 <FontAwesomeIcon icon={faChevronRight} />
             </button>
         </div>

@@ -5,6 +5,9 @@ import { Card } from "../Cards/card";
 import { TopNavbar } from "../Navbar/topNavbar"
 import { ShortLeftNavbar } from "../Navbar/leftNavbar"
 // import {GlobalProvider} from "../Global"
+import { BrowserRouter } from "react-router-dom";
+import { SignIn } from "~/SignIn/SignIn";
+
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -15,10 +18,12 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const [searchedContent, setSearchedContent] = useState();
-  const [videos, setVideos] = useState([]); // Video state
+  const [videos, setVideos] = useState([]);
+  const [isExpanded, setIsExpanded] = useState(false);
+
 
 const fetchVideos = async () => {
-const apiKey = 'AIzaSyCiGHln8V8uuyGx8MWqNl0DfynX6p7VNy4'; // ⚠️ API key .env me safe rakho
+const apiKey = 'AIzaSyAqTrum9T7H7dRef24ShOEOTIpk_Vpw3f8'; // ⚠️ API key .env me safe rakho
 const maxResults = 10;
 const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchedContent}&maxResults=${maxResults}&key=${apiKey}`;
 // const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchedContent}&maxResults=${maxResults}&key=${apiKey}&videoDuration=short&type=video&q=%23shorts`;
@@ -41,9 +46,9 @@ try {
   return(
     <div className="bg-gray-950">
 
-    <TopNavbar setSearchedContent={setSearchedContent} handleSearch={handleSearch}/>
-    <Welcome />
-    <Card videos={videos}/>
+    <TopNavbar setSearchedContent={setSearchedContent} handleSearch={handleSearch} isExpanded={isExpanded} setIsExpanded={setIsExpanded}/>
+    <Card videos={videos} isExpanded={isExpanded}/>
+    <SignIn/>
     </div>
     );
 }

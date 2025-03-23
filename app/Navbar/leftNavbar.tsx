@@ -8,11 +8,11 @@ export function LeftNavbar() {
   return (
     <>
     <div className="fixed top-14 left-0 flex flex-col text-left bg-gray-950 w-1/6 z-50">
-    <div className="flex items-center p-3 hidden">
+    {/* <div className="flex items-center p-3 hidden">
         <FontAwesomeIcon icon={faBars} className="text-white w-10 h-12 text-2xl cursor-grab"/>
         <FontAwesomeIcon icon={faYoutube} className="bg-white rounded-4xl p-1 w-10 h-10 ml-5 cursor-grab" />
         <h1 className="text-white ml-2 font-bold cursor-grab">Entertainment</h1>
-    </div>
+    </div> */}
     <div className="border-1 border-gray-500 m-1"></div>
     <div className="w-full text-white p-2">
     <li className="list-none py-2 hover:bg-gray-700 cursor-grab rounded-xl pl-4"><FontAwesomeIcon icon={faHome} className="mr-2" /> Home</li>
@@ -45,11 +45,11 @@ export function ShortLeftNavbar() {
     return (
       <>
       <div className="fixed top-14 left-0 flex flex-col text-left bg-gray-950 w-20 h-screen">
-      <div className="flex items-center p-3 hidden">
+      {/* <div className="flex items-center p-3 hidden">
           <FontAwesomeIcon icon={faBars} className="text-white w-10 h-12 text-2xl cursor-grab"/>
           <FontAwesomeIcon icon={faYoutube} className="bg-white rounded-4xl p-1 w-10 h-10 ml-5 cursor-grab" />
           <h1 className="text-white ml-2 font-bold cursor-pointer">Entertainment</h1>
-      </div>
+      </div> */}
       <div className="border-1 border-gray-500 m-1"></div>
       <div className="w-full text-white">
       <li className="flex flex-col items-center text-xs list-none p-2 hover:bg-gray-700 cursor-pointer rounded-xl"><FontAwesomeIcon icon={faHome} className="p-2 text-lg"/> Home</li>
